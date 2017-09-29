@@ -70,13 +70,18 @@ public class Main extends JFrame {
 		display.setColumns(10);
 		
 		num = 0;
+		operator = 0;
 		
 		JButton backspace = new JButton("\u2190");
 		backspace.setBounds(129, 97, 76, 23);
 		backspace.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (display.getText().length() != 1) {
-					display.setText(display.getText().substring(0, display.getText().length() - 1));
+				if (!display.getText().matches("[A-Za-z]+")) {
+					if (display.getText().length() != 1) {
+						display.setText(display.getText().substring(0, display.getText().length() - 1));
+					} else {
+						display.setText("0");
+					}
 				} else {
 					display.setText("0");
 				}
@@ -184,7 +189,6 @@ public class Main extends JFrame {
 			i.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) { 
 					//Regex to verify Number Format
-					operator = 0;
 					if (display.getText().matches("(-)?([0-9]+(.[0-9]*)?)|(.[0-9]+)")) {
 						if (eqnDisplay.getText().equals("")) {
 							operator = i.getText().charAt(0);
@@ -213,7 +217,7 @@ public class Main extends JFrame {
 		for (JButton i : nums) {
 			i.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if (!display.getText().equals("0") && !display.getText().equals("Error")) {
+					if ( !display.getText().equals("0") && display.getText().matches("[0-9]+") ) {
 						display.setText((display.getText() + i.getText()) + "");
 					} else {
 						display.setText(i.getText());
