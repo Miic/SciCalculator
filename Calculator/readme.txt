@@ -24,6 +24,7 @@ Bugs / Defects Encountered During Testing:
 - Fixed Bug Regarding Divide by 0 and Error Cases not being properly removed by detection using Regex Statements.
 - Fixed Bug Regarding Infinity Cases, such as being unable to use infinity in operations and being able to perform operations onto the Infinity as a literal String like "Infinty5" or "Infin"
 - Fixed Bug Regarding Decimal Numbers caused by the Infinity Cases Patch
+- Fixed Bug where every calculation would lag for 1 second as the engine initialized for every calculation operation
 
 Update:
     1.0:
@@ -37,7 +38,9 @@ Update:
     - Fixed Bugs Regarding Infinity Cases
     1.4:
     - Fixed Issue with Decimal Cases
+    1.5:
+    - Optimized by re-using the same Javascript engine rather than re-initalizing every calculation.
 	
-Number of Bugs: 4
+Number of Bugs: 5
 
 Total Time Eclipsed: ~4 Hours

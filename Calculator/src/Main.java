@@ -30,6 +30,9 @@ public class Main extends JFrame {
 	private char operator;
 	private float num;
 	
+	private static ScriptEngineManager mgr;
+	private static ScriptEngine engine;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -42,6 +45,8 @@ public class Main extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			    mgr = new ScriptEngineManager();
+			    engine = mgr.getEngineByName("JavaScript");
 				JOptionPane.showMessageDialog(null, "Simple Calculator\n\nCoded by Michael Cruz\nCPP CS 480 Assignment 1\nCompleted Date: 9/28/2017");
 			}
 		});
@@ -124,8 +129,6 @@ public class Main extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (display.getText().matches("(-)?([0-9]+(.[0-9]*(E[0-9]+)?)?)|(.[0-9]+)|(Infinity)")) {
 					if (!eqnDisplay.getText().equals("")) {
-					    ScriptEngineManager mgr = new ScriptEngineManager();
-					    ScriptEngine engine = mgr.getEngineByName("JavaScript");
 					    String foo = num + " " + operator + " " + Float.parseFloat(display.getText());
 					    try {
 							display.setText(engine.eval(foo) + "");
@@ -196,8 +199,6 @@ public class Main extends JFrame {
 							eqnDisplay.setText( num + " " + operator );
 							display.setText("0");
 						} else {
-						    ScriptEngineManager mgr = new ScriptEngineManager();
-						    ScriptEngine engine = mgr.getEngineByName("JavaScript");
 						    String foo = num + " " + operator + " " + Float.parseFloat(display.getText());
 						    try {
 								display.setText(engine.eval(foo) + "");
