@@ -122,7 +122,7 @@ public class Main extends JFrame {
 		equals.setBounds(68, 252, 137, 23);
 		equals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (display.getText().matches("(-)?([0-9]+(.[0-9]*)?)|(.[0-9]+)")) {
+				if (display.getText().matches("(-)?([0-9]+(.[0-9]*(E[0-9]+)?)?)|(.[0-9]+)|(Infinity)")) {
 					if (!eqnDisplay.getText().equals("")) {
 					    ScriptEngineManager mgr = new ScriptEngineManager();
 					    ScriptEngine engine = mgr.getEngineByName("JavaScript");
@@ -189,7 +189,7 @@ public class Main extends JFrame {
 			i.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) { 
 					//Regex to verify Number Format
-					if (display.getText().matches("(-)?([0-9]+(.[0-9]*)?)|(.[0-9]+)")) {
+					if (display.getText().matches("(-)?([0-9]+(.[0-9]*(E[0-9]+)?)?)|(.[0-9]+)|(Infinity)")) {
 						if (eqnDisplay.getText().equals("")) {
 							operator = i.getText().charAt(0);
 							num = Float.parseFloat(display.getText());
@@ -219,7 +219,8 @@ public class Main extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					if ( !display.getText().equals("0") && display.getText().matches("[0-9]+") ) {
 						display.setText((display.getText() + i.getText()) + "");
-					} else {
+					//If you hit infinity already, don't bother adding more numbers.
+					} else if (!display.getText().equals("Infinity")) {
 						display.setText(i.getText());
 					}
 				}
