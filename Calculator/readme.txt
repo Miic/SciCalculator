@@ -2,7 +2,7 @@ Project Name: Calculator
 Class: CS480
 Date of Completion: 9/28/2017
 
-Version: 1.4
+Version: 1.3
 
 Compilation Instructions:
 Built with Java 8
@@ -33,7 +33,7 @@ Update:
     1.2:
     - Fixed Bug Regarding Special Cases not being Handled Properly
 	1.3:
-	- Fixed Busg Regarding Infinity Cases
+    - Fixed Bugs Regarding Infinity Cases
 	
 Number of Bugs: 2
 
