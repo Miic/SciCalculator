@@ -1,3 +1,8 @@
+//Project Name: Calculator
+//Class: CS 480
+//Name: Michael Cruz
+//Date: 9/28/17
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -22,19 +27,28 @@ public class Main extends JFrame {
 
 	private JPanel contentPane;
 	
+	//Will server as user interface for both input and output
 	private JTextField display;
+	
+	//Will serve as a signifier that both an operation and a variable has been saved allowing for a full eqn expression to be parsed.
 	private JLabel eqnDisplay;
+	
+	
+	//Allows for easier bulk event handling, see around line 200
 	private JButton[] nums;
 	private JButton[] ops;
 	
+	//We need to store the operator
 	private char operator;
+	//We need to store at most one number in this simple calculator
 	private float num;
 	
+	//Handles Calculator Logic
 	private static ScriptEngineManager mgr;
 	private static ScriptEngine engine;
 	
 	/**
-	 * Launch the application.
+	 * Launch the application, initialize Javascript Engine 
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -53,9 +67,11 @@ public class Main extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the frame and buttons, functionality all handled in events.
 	 */
 	public Main() {
+		
+		//Main Frame
 		setTitle("Calculator\r\n");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,6 +80,8 @@ public class Main extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
+		
+		//Display First since most buttons will interact with this.
 		display = new JTextField();
 		display.setBounds(13, 31, 192, 48);
 		display.setBackground(Color.WHITE);
@@ -74,6 +92,7 @@ public class Main extends JFrame {
 		display.setFont(new Font("SimSun", Font.PLAIN, 18));
 		display.setColumns(10);
 		
+		//Initialize operators so theres no confusion w/ default initalization of primiatives
 		num = 0;
 		operator = 0;
 		
@@ -93,7 +112,7 @@ public class Main extends JFrame {
 			}
 		});
 		
-		
+		//Function: Clears both Display and Stored Equation (basically reset)
 		JButton clearE = new JButton("CE");
 		clearE.setBounds(15, 97, 52, 23);
 		clearE.addActionListener(new ActionListener() {
@@ -103,6 +122,7 @@ public class Main extends JFrame {
 			}
 		});
 		
+		//Function: Clear only Display
 		JButton clear = new JButton("C");
 		clear.setBounds(77, 97, 43, 23);
 		clear.addActionListener(new ActionListener() {
@@ -111,6 +131,7 @@ public class Main extends JFrame {
 			}
 		});
 		
+		//Function: Toggle Display between Negative and Positive
 		JButton Negative = new JButton("\u00B1");
 		Negative.setBounds(15, 252, 43, 23);
 		Negative.addActionListener(new ActionListener() {
@@ -123,10 +144,12 @@ public class Main extends JFrame {
 			} 
 		});
 		
+		//Function: Forms an Expression then calculates it
 		JButton equals = new JButton("=");
 		equals.setBounds(68, 252, 137, 23);
 		equals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Regex is an easy way to verify this.
 				if (display.getText().matches("(-)?([0-9]+(.[0-9]*(E[0-9]+)?)?)|(.[0-9]+)|(Infinity)")) {
 					if (!eqnDisplay.getText().equals("")) {
 					    String foo = num + " " + operator + " " + Float.parseFloat(display.getText());
@@ -188,6 +211,7 @@ public class Main extends JFrame {
 		contentPane.add(clear);
 		contentPane.add(Negative);
 		
+		//Function: Calculate operations. Depending on whether there is already a saved value, either save the current display or take the current form and create the expression and calculate it immediately. Has safety checking.
 		for(JButton i : ops) {
 			i.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) { 
@@ -215,6 +239,7 @@ public class Main extends JFrame {
 			contentPane.add(i);
 		}
 		
+		//Function: allows for input of [0-9.]. Has safety checking.
 		for (JButton i : nums) {
 			i.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
