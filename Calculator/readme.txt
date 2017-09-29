@@ -4,11 +4,11 @@ Date of Completion: 9/28/2017
 
 Version: 1.2
 
-Complilation Instructions:
+Compilation Instructions:
 Built with Java 8
 Build with Java Compiler or IDE, uses only Standard Library
 
-Intial Estimated time needed to Complete Project: 5 hours
+Initial Estimated time needed to Complete Project: 5 hours
 
 Log Time:
 - 7:38pm 9/28/2017 - 7:50pm 9/28/2017. ~20min Category: Requirements Analysis & Design
