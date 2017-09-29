@@ -23,6 +23,7 @@ Bugs / Defects Encountered During Testing:
 - Float adding with operator as a Float rather than an operator, causing miscalculations. Solved by: Adding empty string before adding to operator char to force String additions
 - Fixed Bug Regarding Divide by 0 and Error Cases not being properly removed by detection using Regex Statements.
 - Fixed Bug Regarding Infinity Cases, such as being unable to use infinity in operations and being able to perform operations onto the Infinity as a literal String like "Infinty5" or "Infin"
+- Fixed Bug Regarding Decimal Numbers caused by the Infinity Cases Patch
 
 Update:
     1.0:
@@ -34,7 +35,9 @@ Update:
     - Fixed Bug Regarding Special Cases not being Handled Properly
 	1.3:
     - Fixed Bugs Regarding Infinity Cases
+    1.4:
+    - Fixed Issue with Decimal Cases
 	
-Number of Bugs: 2
+Number of Bugs: 4
 
 Total Time Eclipsed: ~4 Hours

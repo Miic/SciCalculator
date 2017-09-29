@@ -217,7 +217,7 @@ public class Main extends JFrame {
 		for (JButton i : nums) {
 			i.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if ( !display.getText().equals("0") && display.getText().matches("[0-9]+") ) {
+					if ( !display.getText().equals("0") && !display.getText().matches("[a-zA-Z]+") ) {
 						display.setText((display.getText() + i.getText()) + "");
 					//If you hit infinity already, don't bother adding more numbers.
 					} else if (!display.getText().equals("Infinity")) {
